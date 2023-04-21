@@ -10,7 +10,7 @@ const projectSchema = new Schema({
     required:true
   },
   active:{
-    type: Schema.Types.String,
+    type: Schema.Types.Boolean,
     required: true,
   }
 });
