@@ -18,4 +18,4 @@ app.use(bodyParser.json())
 
 app.use('/api',todoRouter)
 app.use('/', ...swaggerMiddleware())
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
