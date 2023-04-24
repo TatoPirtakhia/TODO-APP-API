@@ -1,6 +1,5 @@
 import Project from "../models/Project.js"
-import addTitle from "../schemas/addTitle.js"
-
+import addNewTitleSchema from "../schemas/addNewTitleSchema.js"
 export const getAllProject = async (req,res) =>{
     console.log("i am in get all")
     const data = await Project.find()
@@ -19,10 +18,10 @@ export const getAllProject = async (req,res) =>{
 export const addNewTitle = async (req,res) =>{
     const {body} = req;
     console.log(body)
-    const valdiator = await addTitle()
+    const validator = await addNewTitleSchema()
     console.log("5")
 
-    const {value,error} = valdiator.validate(body)
+    const {value,error} = validator.validate(body)
     
     if (error){
         return res.status(401).json(error.details)
