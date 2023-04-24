@@ -1,27 +1,25 @@
 import Project from "../models/Project.js"
 import addNewTitleSchema from "../schemas/addNewTitleSchema.js"
+
 export const getAllProject = async (req,res) =>{
-    console.log("i am in get all")
     const data = await Project.find()
     const newData = data.map(data => {
         return{ 
             title: data.title,
             id: data.id,
-            Status: data.Status
+            status: data.status
         }
     })
   
     return res.status(200).json(newData)
 }
 
-
 export const addNewTitle = async (req,res) =>{
-    const {body} = req;
-    console.log(body)
+   
     const validator = await addNewTitleSchema()
-    console.log("5")
 
-    const {value,error} = validator.validate(body)
+ 
+    const {value,error} = validator.validate(req.body)
     
     if (error){
         return res.status(401).json(error.details)
