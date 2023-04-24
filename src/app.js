@@ -3,6 +3,7 @@ import connect from "./database/mongo.js";
 import dotenv from "dotenv"
 import bodyParser from "body-parser";
 import todoRouter from "../routes/todo-routers.js";
+import swaggerMiddleware from "./middlewares/swager-middlewares.js";
 
 const app = express()
 dotenv.config()
@@ -16,5 +17,5 @@ app.use(bodyParser.json())
 // })
 
 app.use('/api',todoRouter)
-
+app.use('/', ...swaggerMiddleware())
 app.listen(3000)
