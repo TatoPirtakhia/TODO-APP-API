@@ -45,4 +45,26 @@ paths:
               status: true
       responses:
         "200":
-          description: feedback created
+          description: todo created
+  /updateStatus:
+    put:
+      tags:
+        - todo
+      requestBody:
+        description: update Status
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                status:
+                  type: boolean 
+            example:
+              id: 3
+              status: true
+      responses:
+        "200":
+          description: todo updated
