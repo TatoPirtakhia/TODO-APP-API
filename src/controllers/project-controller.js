@@ -38,6 +38,8 @@ export const addNewTitle = async (req, res) => {
   return res.status(201).json({ ...Title });
 };
 
+
+
 export const updateStatus = async (req, res) => {
   const { id ,status } = req.body;
   await Project.findOneAndUpdate(
@@ -49,3 +51,13 @@ export const updateStatus = async (req, res) => {
 
   return res.status(200).json({ message: "status updated successfully" });
 };
+
+
+export const deleteTodo = async (req,res)=>{
+  const {id} = req.body
+  const todo = await Project.findOne({id:id})
+  console.log(todo)
+  await todo.deleteOne();
+
+  return res.status(200).json({ message: "todo deleted successfully" });
+}

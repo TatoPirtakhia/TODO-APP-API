@@ -68,3 +68,22 @@ paths:
       responses:
         "200":
           description: todo updated
+  /deleteTodo:
+    delete:
+      tags:
+        - todo
+      requestBody:
+        description: delete todo
+        required: true
+        content:
+          application/json:
+            schema:
+              type: number
+              properties:
+                id:
+                  type: number
+            example:
+              id: 3
+      responses:
+        "200":
+          description: todo updated
