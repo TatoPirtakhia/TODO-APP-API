@@ -17,8 +17,6 @@ export const getAllProject = async (req, res) => {
 export const addNewTitle = async (req, res) => {
   const validator = await addNewTitleSchema();
 
-
-
   const { value, error } = validator.validate(req.body);
 
   if (error) {
@@ -38,10 +36,8 @@ export const addNewTitle = async (req, res) => {
   return res.status(201).json({ ...Title });
 };
 
-
-
 export const updateStatus = async (req, res) => {
-  const { id ,status } = req.body;
+  const { id, status } = req.body;
   await Project.findOneAndUpdate(
     { id },
     {
@@ -52,12 +48,22 @@ export const updateStatus = async (req, res) => {
   return res.status(200).json({ message: "status updated successfully" });
 };
 
+export const deleteTodo = async (req, res) => {
+  const { id } = req.params;
+  const todo = await Project.findOne({ id: +id });
 
-export const deleteTodo = async (req,res)=>{
-  const {id} = req.params
-  const todo = await Project.findOne({id:+id})
-  
   await todo.deleteOne();
 
   return res.status(200).json({ message: "todo deleted successfully" });
-}
+};
+
+export const deleteCompleted = async (req, res) => {
+  const { status } = req.body;
+  const data = await Project.find();
+  const newData = data.filter((data) => data.status === status);
+
+  for (const item of newData) {
+    await Project.deleteOne({ status: item.status });
+  }
+  return res.status(200).json({ message: "completed deleted successfully" });
+};

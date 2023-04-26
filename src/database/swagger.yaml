@@ -86,4 +86,23 @@ paths:
               id: 3
       responses:
         "200":
-          description: todo updated
+          description: todo deleted
+  /deleteCompleted:
+    delete:
+      tags:
+        - todo
+      requestBody:
+        description: delete Completed
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: boolean
+            example:
+              status: true
+      responses:
+        "200":
+          description: Completed deleted
