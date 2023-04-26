@@ -51,19 +51,17 @@ export const updateStatus = async (req, res) => {
 export const deleteTodo = async (req, res) => {
   const { id } = req.params;
   const todo = await Project.findOne({ id: +id });
-
   await todo.deleteOne();
 
   return res.status(200).json({ message: "todo deleted successfully" });
 };
 
 export const deleteCompleted = async (req, res) => {
-  const { status } = req.body;
-  const data = await Project.find();
-  const newData = data.filter((data) => data.status === status);
 
-  for (const item of newData) {
-    await Project.deleteOne({ status: item.status });
-  }
+
+
+    await Project.deleteMany({ status: true });
+    
   return res.status(200).json({ message: "completed deleted successfully" });
 };
+
