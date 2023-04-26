@@ -9,5 +9,6 @@ todoRouter.post('/title',addNewTitle)
 
 todoRouter.put('/updateStatus',updateStatus)
 
-todoRouter.delete('/deleteTodo',deleteTodo)
+todoRouter.delete('/deleteTodo/:id',deleteTodo)
+
 export default todoRouter

@@ -54,9 +54,9 @@ export const updateStatus = async (req, res) => {
 
 
 export const deleteTodo = async (req,res)=>{
-  const {id} = req.body
-  const todo = await Project.findOne({id:id})
-  console.log(todo)
+  const {id} = req.params
+  const todo = await Project.findOne({id:+id})
+  
   await todo.deleteOne();
 
   return res.status(200).json({ message: "todo deleted successfully" });
